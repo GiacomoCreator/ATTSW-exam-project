@@ -8,11 +8,15 @@ public class Supermarket {
 		private String name;
 		private String address;
 		
+		public Supermarket() {			
+		}
+		
 		public Supermarket (Long id, String name, String address) {
 			this.id = id;
 			this.name = name;
 			this.address = address;
 		}
+
 
 		public Long getId() {
 			return id;
