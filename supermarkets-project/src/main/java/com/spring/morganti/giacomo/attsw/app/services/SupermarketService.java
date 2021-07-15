@@ -36,4 +36,8 @@ public class SupermarketService {
 		throw new UnsupportedOperationException(TEMPORARY_IMPLEMENTATION);
 	}
 
+	public List<Supermarket> getSupermarketsByName(String supermarketName) {
+		throw new UnsupportedOperationException(TEMPORARY_IMPLEMENTATION);
+	}
+
 }

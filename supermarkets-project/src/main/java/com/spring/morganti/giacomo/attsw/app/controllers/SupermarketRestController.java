@@ -33,6 +33,11 @@ public class SupermarketRestController {
 	return supermarketService.getSupermarketById(id);
 	}
 	
+	@GetMapping("/name/{supermarketName}")
+	public List<Supermarket> getSupermarketsByName(@PathVariable String supermarketName) {
+	return supermarketService.getSupermarketsByName(supermarketName);
+	}
+	
 	@PostMapping("/new")
 	public Supermarket newSupermarket(@RequestBody Supermarket supermarket) {
 		return supermarketService.insertNewSupermarket(supermarket);

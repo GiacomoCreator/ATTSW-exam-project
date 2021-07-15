@@ -96,6 +96,33 @@ public class SupermarketRestControllerRestAssuredTest {
 		verify(supermarketService).getAllSupermarkets();
 		verifyNoMoreInteractions(supermarketService);
 	}
+	
+	@Test
+	public void test_getSupermarketsByName() {
+		
+		String supermarketName="supermarketName";
+		Supermarket testSupermarket1 = new Supermarket(1L, "supermarketName", "address1");
+		Supermarket testSupermarket2 = new Supermarket(2L, "supermarketName", "address2");
+		
+		when(supermarketService.getSupermarketsByName(supermarketName)).thenReturn(asList(testSupermarket1, testSupermarket2));
+		
+		given().
+		when().
+			get("/api/supermarkets/name/supermarketName").
+		then().
+			statusCode(200).
+			assertThat().
+				body("id[0]", equalTo(1),
+					 "name[0]", equalTo("supermarketName"),
+					 "address[0]", equalTo("address1"),
+					 "id[1]", equalTo(2),
+					 "name[1]", equalTo("supermarketName"),
+					 "address[1]", equalTo("address2")
+				);
+		
+		verify(supermarketService).getSupermarketsByName(supermarketName);
+		verifyNoMoreInteractions(supermarketService);
+	}
 
 	@Test
 	public void test_postSupermarket() throws Exception {
