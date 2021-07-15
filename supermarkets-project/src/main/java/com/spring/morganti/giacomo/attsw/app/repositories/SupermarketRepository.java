@@ -32,4 +32,8 @@ public class SupermarketRepository {
 		throw new UnsupportedOperationException(TEMPORARY_IMPLEMENTATION);
 	}
 
+	public List<Supermarket> findByName(String supermarketName) {
+		throw new UnsupportedOperationException(TEMPORARY_IMPLEMENTATION);
+	}
+
 }

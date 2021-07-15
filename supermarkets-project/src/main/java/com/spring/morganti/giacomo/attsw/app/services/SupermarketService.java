@@ -44,4 +44,8 @@ public class SupermarketService {
 		supermarketRepository.deleteAll();		
 	}
 
+	public List<Supermarket> getSupermarketsByName(String supermarketName) {
+		return supermarketRepository.findByName(supermarketName);
+	}
+
 }

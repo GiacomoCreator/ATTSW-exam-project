@@ -29,10 +29,10 @@ public class SupermarketServiceWithMockitoTest {
 	@Test
 	public void test_getAllSupermarkets_withZeroSupermarkets() {
 		
-		when(supermarketRepository.findAll()).
-			thenReturn(emptyList());
-		assertThat(supermarketService.getAllSupermarkets()).
-		isEmpty();
+		when(supermarketRepository.findAll())
+			.thenReturn(emptyList());
+		assertThat(supermarketService.getAllSupermarkets())
+			.isEmpty();
 		
 		verify(supermarketRepository).findAll();
 		verifyNoMoreInteractions(supermarketRepository);
@@ -43,10 +43,10 @@ public class SupermarketServiceWithMockitoTest {
 	public void test_getAllSupermarkets_withOneSupermarket() {
 		
 		Supermarket supermarket = new Supermarket(1L, "supermarket", "address");
-		when(supermarketRepository.findAll()).
-			thenReturn(asList(supermarket));
-		assertThat(supermarketService.getAllSupermarkets()).
-			containsExactly(supermarket);
+		when(supermarketRepository.findAll())
+			.thenReturn(asList(supermarket));
+		assertThat(supermarketService.getAllSupermarkets())
+			.containsExactly(supermarket);
 		
 		verify(supermarketRepository).findAll();
 		verifyNoMoreInteractions(supermarketRepository);
@@ -58,10 +58,10 @@ public class SupermarketServiceWithMockitoTest {
 		
 		Supermarket supermarket1 = new Supermarket(1L, "supermarket1", "address1");
 		Supermarket supermarket2 = new Supermarket(2L, "supermarket2", "address2");
-		when(supermarketRepository.findAll()).
-			thenReturn(asList(supermarket1, supermarket2));
-		assertThat(supermarketService.getAllSupermarkets()).
-			containsExactly(supermarket1, supermarket2);
+		when(supermarketRepository.findAll())
+			.thenReturn(asList(supermarket1, supermarket2));
+		assertThat(supermarketService.getAllSupermarkets())
+			.containsExactly(supermarket1, supermarket2);
 		
 		verify(supermarketRepository).findAll();
 		verifyNoMoreInteractions(supermarketRepository);
@@ -91,6 +91,54 @@ public class SupermarketServiceWithMockitoTest {
 		
 		verify(supermarketRepository).findById(anyLong());
 		verifyNoMoreInteractions(supermarketRepository);
+	}
+	
+	@Test
+	public void test_getSupermarketsByName_withZeroSupermarkets() {
+		
+		String supermarketName="supermarketName";
+		
+		when(supermarketRepository.findByName(supermarketName))
+			.thenReturn(emptyList());
+	    assertThat(supermarketService.getSupermarketsByName(supermarketName))
+	        .isEmpty();
+	
+	    verify(supermarketRepository).findByName(supermarketName);
+	    verifyNoMoreInteractions(supermarketRepository);
+	
+	}
+	
+	@Test
+	public void test_getSupermarketsByName_withOneSupermarket() {
+		
+		String supermarketName="supermarketName";
+		Supermarket supermarket = new Supermarket(1L, "supermarketName", "address");
+		
+		when(supermarketRepository.findByName(supermarketName))
+			.thenReturn(asList(supermarket));
+		assertThat(supermarketService.getSupermarketsByName(supermarketName))
+			.containsExactly(supermarket);
+		
+		verify(supermarketRepository).findByName(supermarketName);
+		verifyNoMoreInteractions(supermarketRepository);
+	
+	}
+	
+	@Test
+	public void test_getSupermarketsByName_withMoreSupermarkets() {
+		
+		String supermarketName="supermarketName";
+		Supermarket supermarket1 = new Supermarket(1L, "supermarketName", "address1");
+		Supermarket supermarket2 = new Supermarket(2L, "supermarketName", "address2");
+		
+		when(supermarketRepository.findByName(supermarketName))
+			.thenReturn(asList(supermarket1, supermarket2));
+		assertThat(supermarketService.getSupermarketsByName(supermarketName))
+			.containsExactly(supermarket1, supermarket2);
+		
+		verify(supermarketRepository).findByName(supermarketName);
+		verifyNoMoreInteractions(supermarketRepository);
+			
 	}
 	
 	@Test
