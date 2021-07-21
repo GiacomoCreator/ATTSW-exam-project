@@ -14,6 +14,10 @@ public class Supermarket {
 			this.address = address;
 		}
 
+		public Supermarket() {
+			// TODO Auto-generated constructor stub
+		}
+
 		public Long getId() {
 			return id;
 		}
