@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Search</title>
+</head>
+<body>
+
+ <h1>Search Supermarket</h1>
+ 
+  <div th:if="${supermarkets.empty}">
+     <span th:text="${message}"></span>
+  </div>
+  
+  <div th:unless="${supermarkets.empty}">
+    <table id="supermarkets_name_table">
+      <caption>Supermarkets</caption>
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="supermarket : ${supermarkets}">
+          <td th:text="${supermarket.id}"></td>
+          <td th:text="${supermarket.name}"></td>
+          <td th:text="${supermarket.address}"></td>
+          <td><a th:href="@{'/edit/' + ${supermarket.id}}">Edit</a></td>
+          <td><a th:href="@{'/search/' + 'delete/' + ${supermarket.id}}">Delete</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</body>
+</html>
