@@ -73,7 +73,7 @@ public class SupermarketWebControllerTest {
 			.andExpect(model().attribute("supermarkets",
 				Collections.emptyList()))
 			.andExpect(model().attribute("message",
-				"No supermarket"));
+				"No supermarket is present"));
 		
 		 verify(supermarketService).getAllSupermarkets();
 		 verifyNoMoreInteractions(supermarketService);
@@ -101,7 +101,7 @@ public class SupermarketWebControllerTest {
 		mvc.perform(get("/edit/1"))
 			.andExpect(view().name("edit"))
 			.andExpect(model().attribute("supermarket", nullValue()))
-			.andExpect(model().attribute("message", "Error: supermarket with id: 1 not found"));
+			.andExpect(model().attribute("message", "Error: supermarket with id 1 not found"));
 		
 		 verify(supermarketService).getSupermarketById(1L);
 		 verifyNoMoreInteractions(supermarketService);
@@ -152,10 +152,28 @@ public class SupermarketWebControllerTest {
 		 
 		when(supermarketService.getSupermarketsByName(supermarketName)).thenReturn(supermarkets);
 		 
-		mvc.perform(get("/name/supermarket")
-				.param("name", supermarketName))
+		mvc.perform(get("/search")
+				.param("name_to_search", supermarketName))
 		 		.andExpect(model().attribute("supermarkets", supermarkets))
 		 		.andExpect(model().attribute("message", ""))
+		 		.andExpect(view().name("search"));
+		 
+		 verify(supermarketService).getSupermarketsByName(supermarketName);
+		 verifyNoMoreInteractions(supermarketService);
+	 }
+	
+	@Test
+	public void test_searchSupermarketsByName_notFound() throws Exception {
+	 
+		String supermarketName = "supermarket";
+		 
+		when(supermarketService.getSupermarketsByName(supermarketName))
+				.thenReturn(Collections.emptyList());
+		 
+		mvc.perform(get("/search")
+				.param("name_to_search", supermarketName))
+		 		.andExpect(model().attribute("supermarkets", Collections.emptyList()))
+		 		.andExpect(model().attribute("message", "Error: supermarket with name supermarket not found"))
 		 		.andExpect(view().name("search"));
 		 
 		 verify(supermarketService).getSupermarketsByName(supermarketName);
@@ -181,12 +199,10 @@ public class SupermarketWebControllerTest {
 	public void test_deleteSupermarketById_fromSearchView() throws Exception {
 			
 		 Supermarket supermarketToDelete  = new Supermarket(1L, "supermarket", "address");
-		 String supermarketName = "supermarket";
 		 
 		 when(supermarketService.getSupermarketById(1L)).thenReturn(supermarketToDelete);
 		 
-		 mvc.perform(get("/name/supermarket/delete/1")
-				.param("name", supermarketName)
+		 mvc.perform(get("/search/delete/1")
 				.param("id", "1"))
 		 		.andExpect(view().name("redirect:/search"));
 		 

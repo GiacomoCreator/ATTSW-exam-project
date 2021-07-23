@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.morganti.giacomo.attsw.app.model.Supermarket;
 import com.spring.morganti.giacomo.attsw.app.services.SupermarketService;
@@ -26,7 +27,7 @@ public class SupermarketWebController {
 	public String index(Model model) {
 		List<Supermarket> allSupermarkets = supermarketService.getAllSupermarkets();
 		model.addAttribute(SUPERMARKETS_ATTRIBUTE, allSupermarkets);
-		model.addAttribute(MESSAGE_ATTRIBUTE, allSupermarkets.isEmpty() ? "No supermarket" :  "");
+		model.addAttribute(MESSAGE_ATTRIBUTE, allSupermarkets.isEmpty() ? "No supermarket is present" :  "");
 		return "index";
 	}
 		
@@ -35,7 +36,7 @@ public class SupermarketWebController {
 		Supermarket supermarketById = supermarketService.getSupermarketById(id);
 		model.addAttribute(SUPERMARKET_ATTRIBUTE, supermarketById);
 		model.addAttribute(MESSAGE_ATTRIBUTE, 
-				supermarketById == null ? "Error: supermarket with id: " + id + " not found"  : "");
+				supermarketById == null ? "Error: supermarket with id " + id + " not found"  : "");
 		return "edit";
 	}
 	
@@ -58,12 +59,13 @@ public class SupermarketWebController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/name/{supermarketName}")
-	public String searchSupermarket (@PathVariable String supermarketName, Model model) {
+	@GetMapping("/search")
+	public String searchSupermarket (@RequestParam("name_to_search") String supermarketName, Model model) {
 
 		List<Supermarket> supermarkets = supermarketService.getSupermarketsByName(supermarketName);
 		model.addAttribute(SUPERMARKETS_ATTRIBUTE, supermarkets);
-		model.addAttribute(MESSAGE_ATTRIBUTE, "");
+		model.addAttribute(MESSAGE_ATTRIBUTE,  
+				supermarkets.isEmpty() ? "Error: supermarket with name " + supermarketName + " not found"  : "");
 		
 		return "search";
 	}
@@ -76,8 +78,8 @@ public class SupermarketWebController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("name/{supermarketName}/delete/{id}")
-	public String deleteSupermarketFromSearchView(@PathVariable String supermarketName, @PathVariable long id) {
+	@GetMapping("search/delete/{id}")
+	public String deleteSupermarketFromSearchView(@PathVariable long id) {
 		Supermarket supermarketToDelete = supermarketService.getSupermarketById(id);
 		supermarketService.delete(supermarketToDelete);
 		

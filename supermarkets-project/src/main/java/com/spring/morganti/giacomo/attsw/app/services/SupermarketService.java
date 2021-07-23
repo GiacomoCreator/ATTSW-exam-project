@@ -1,3 +1,4 @@
+  
 package com.spring.morganti.giacomo.attsw.app.services;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import com.spring.morganti.giacomo.attsw.app.model.Supermarket;
 
 @Service
 public class SupermarketService {
-
+	
 	private static final String TEMPORARY_IMPLEMENTATION = "Temporary implementation";
 
 	public List<Supermarket> getAllSupermarkets() {
