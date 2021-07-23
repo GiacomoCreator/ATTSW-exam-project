@@ -67,9 +67,9 @@ public class SupermarketWebControllerHtmlUnitTest {
 		assertThat(removeWindowsCR(table.asText()))
 			.isEqualTo(
 				"Supermarkets\n" +
-				"ID	Name	Address\n" +
-				"1	supermarket1	address1	Edit	Delete\n" +
-				"2	supermarket2	address2	Edit	Delete"
+				"Name	Address\n" +
+				"supermarket1	address1	Edit	Delete\n" +
+				"supermarket2	address2	Edit	Delete"
 			);
 		page.getAnchorByHref("/edit/1");
 		page.getAnchorByHref("/edit/2");
@@ -214,14 +214,14 @@ public class SupermarketWebControllerHtmlUnitTest {
 		assertThat(removeWindowsCR(table.asText()))
 			.isEqualTo(
 				"Supermarkets\n" +
-				"ID	Name	Address\n" +
-				"1	existingSupermarket	address1	Edit	Delete\n" +
-				"2	existingSupermarket	address2	Edit	Delete"
+				"Name	Address\n" +
+				"existingSupermarket	address1	Edit	Delete\n" +
+				"existingSupermarket	address2	Edit	Delete"
 				);
 		searchPage.getAnchorByHref("/edit/1");
 		searchPage.getAnchorByHref("/edit/2");
-		searchPage.getAnchorByHref("/search/delete/1");
-		searchPage.getAnchorByHref("/search/delete/2");
+		searchPage.getAnchorByHref("/delete/1");
+		searchPage.getAnchorByHref("/delete/2");
 	}
 	
 }

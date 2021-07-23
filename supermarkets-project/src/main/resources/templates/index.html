@@ -27,14 +27,12 @@
       <caption>Supermarkets</caption>
       <thead>
         <tr>
-          <th scope="col">ID</th>
           <th scope="col">Name</th>
           <th scope="col">Address</th>
         </tr>
       </thead>
       <tbody>
         <tr th:each="supermarket : ${supermarkets}">
-          <td th:text="${supermarket.id}"></td>
           <td th:text="${supermarket.name}"></td>
           <td th:text="${supermarket.address}"></td>
           <td><a th:href="@{'/edit/' + ${supermarket.id}}">Edit</a></td>

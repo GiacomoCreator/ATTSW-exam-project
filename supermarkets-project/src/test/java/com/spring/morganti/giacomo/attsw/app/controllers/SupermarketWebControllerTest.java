@@ -195,20 +195,6 @@ public class SupermarketWebControllerTest {
 		 verify(supermarketService).delete(supermarketToDelete);
 	}
 
-	@Test
-	public void test_deleteSupermarketById_fromSearchView() throws Exception {
-			
-		 Supermarket supermarketToDelete  = new Supermarket(1L, "supermarket", "address");
-		 
-		 when(supermarketService.getSupermarketById(1L)).thenReturn(supermarketToDelete);
-		 
-		 mvc.perform(get("/search/delete/1")
-				.param("id", "1"))
-		 		.andExpect(view().name("redirect:/search"));
-		 
-		 verify(supermarketService).getSupermarketById(1L);
-		 verify(supermarketService).delete(supermarketToDelete);
-	}
 
 	@Test
 	public void test_deleteAllSupermarkets() throws Exception {

@@ -77,15 +77,7 @@ public class SupermarketWebController {
 		
 		return "redirect:/";
 	}
-	
-	@GetMapping("search/delete/{id}")
-	public String deleteSupermarketFromSearchView(@PathVariable long id) {
-		Supermarket supermarketToDelete = supermarketService.getSupermarketById(id);
-		supermarketService.delete(supermarketToDelete);
-		
-		return "redirect:/search";
-	}
-	
+
 	@GetMapping("/drop")
 	public String deleteAll() {
 		supermarketService.deleteAllSupermarkets();
