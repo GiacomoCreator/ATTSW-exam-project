@@ -186,7 +186,7 @@ public class SupermarketWebControllerHtmlUnitTest {
 		HtmlPage searchPage = searchForm.getButtonByName("search_button").click();
 
 		assertThat(searchPage.getBody()
-			.getTextContent()).contains("Error: supermarket with name " + supermarketName + " not found");
+			.getTextContent()).contains("Error: supermarket with this name not found");
 	}
 	
 	

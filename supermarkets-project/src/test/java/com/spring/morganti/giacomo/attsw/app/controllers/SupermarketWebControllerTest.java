@@ -173,7 +173,7 @@ public class SupermarketWebControllerTest {
 		mvc.perform(get("/search")
 				.param("name_to_search", supermarketName))
 		 		.andExpect(model().attribute("supermarkets", Collections.emptyList()))
-		 		.andExpect(model().attribute("message", "Error: supermarket with name supermarket not found"))
+		 		.andExpect(model().attribute("message", "Error: supermarket with this name not found"))
 		 		.andExpect(view().name("search"));
 		 
 		 verify(supermarketService).getSupermarketsByName(supermarketName);

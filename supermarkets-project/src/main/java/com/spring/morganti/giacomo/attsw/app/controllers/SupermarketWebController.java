@@ -65,7 +65,7 @@ public class SupermarketWebController {
 		List<Supermarket> supermarkets = supermarketService.getSupermarketsByName(supermarketName);
 		model.addAttribute(SUPERMARKETS_ATTRIBUTE, supermarkets);
 		model.addAttribute(MESSAGE_ATTRIBUTE,  
-				supermarkets.isEmpty() ? "Error: supermarket with name " + supermarketName + " not found"  : "");
+				supermarkets.isEmpty() ? "Error: supermarket with this name not found"  : "");
 		
 		return "search";
 	}
