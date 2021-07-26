@@ -32,8 +32,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: >
-            xvfb-run mvn verify -Pjacoco sonar:sonar
-            -Dsonar.organization=giacomocreator
-            -Dsonar.host.url=https://sonarcloud.io
+        run: mvn clean verify -Pjacoco sonar:sonar
         working-directory: ATTSW-exam-project
