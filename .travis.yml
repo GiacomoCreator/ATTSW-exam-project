@@ -17,6 +17,7 @@ matrix:
 install: true
 
 script:
+  - cd supermarkets-project 
   - mvn clean verify $ADDITIONAL_MAVEN_ARGS
   
 cache:
