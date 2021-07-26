@@ -1,13 +1,13 @@
-name: Build with Maven to perform SonarCloud analysis
-
+name: Build
 on:
   push:
     branches:
       - service
   pull_request:
-     
+    types: [opened, synchronize, reopened]
 jobs:
   build:
+  working-directory: ATTSW-exam-project
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -34,6 +34,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: >
-            xvfb-run mvn verify -Pjacoco sonar:sonar
-        working-directory: ATTSW-exam-project
+        run: mvn -B clean verify -Pjacoco coveralls:report sonar:sonar
