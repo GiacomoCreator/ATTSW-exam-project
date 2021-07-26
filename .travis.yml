@@ -17,7 +17,6 @@ matrix:
 install: true
 
 script:
-  - cd mymavenproject 
   - mvn clean verify $ADDITIONAL_MAVEN_ARGS
   
 cache:
