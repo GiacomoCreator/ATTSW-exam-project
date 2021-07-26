@@ -2,6 +2,8 @@ name: Build with Maven to perform SonarCloud analysis
 
 on:
   push:
+    branches:
+      - service
   pull_request:
      
 jobs:
