@@ -10,4 +10,4 @@ The model will be represented by entity Supermarket defined by its attributes.
 
 - Coverage Status on Coveralls: [![Coverage Status](https://coveralls.io/repos/github/GiacomoCreator/ATTSW-exam-project/badge.svg?branch=service)](https://coveralls.io/github/GiacomoCreator/ATTSW-exam-project?branch=service)
 
-- Code Quality on SonarQube: [![Quality gate](http://localhost:9000/api/project_badges/quality_gate?project=com.example%3Asupermarkets-project)](http://localhost:9000/dashboard?id=com.example%3Asupermarkets-project)
+- Code Quality on SonarQube: [![Quality Gate Status](http://localhost:9000/api/project_badges/measure?project=com.example%3Asupermarkets-project&metric=alert_status)](http://localhost:9000/dashboard?id=com.example%3Asupermarkets-project)
