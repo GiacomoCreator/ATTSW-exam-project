@@ -1,4 +1,4 @@
-package com.spring.morganti.giacomo.attsw.repositories;
+package com.spring.morganti.giacomo.attsw.app.repositories;
 
 import java.math.BigInteger;
 import java.util.List;
