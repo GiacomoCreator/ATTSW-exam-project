@@ -4,6 +4,7 @@ import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
+import java.math.BigInteger;
 import java.util.Optional;
 import static java.util.Collections.emptyList;
 
@@ -42,7 +43,7 @@ public class SupermarketServiceWithMockitoTest {
 	@Test
 	public void test_getAllSupermarkets_withOneSupermarket() {
 		
-		Supermarket supermarket = new Supermarket(1L, "supermarket", "address");
+		Supermarket supermarket = new Supermarket(BigInteger.valueOf(1), "supermarket", "address");
 		when(supermarketRepository.findAll())
 			.thenReturn(asList(supermarket));
 		assertThat(supermarketService.getAllSupermarkets())
@@ -56,8 +57,8 @@ public class SupermarketServiceWithMockitoTest {
 	@Test
 	public void test_getAllSupermarkets_withMoreSupermarkets() {
 		
-		Supermarket supermarket1 = new Supermarket(1L, "supermarket1", "address1");
-		Supermarket supermarket2 = new Supermarket(2L, "supermarket2", "address2");
+		Supermarket supermarket1 = new Supermarket(BigInteger.valueOf(1), "supermarket1", "address1");
+		Supermarket supermarket2 = new Supermarket(BigInteger.valueOf(2), "supermarket2", "address2");
 		when(supermarketRepository.findAll())
 			.thenReturn(asList(supermarket1, supermarket2));
 		assertThat(supermarketService.getAllSupermarkets())
@@ -71,25 +72,25 @@ public class SupermarketServiceWithMockitoTest {
 	@Test
 	public void test_getSupermarketById_found() {
 		
-		Supermarket supermarket = new Supermarket(1L, "supermarket", "address");
-		when(supermarketRepository.findById(1L))
+		Supermarket supermarket = new Supermarket(BigInteger.valueOf(1), "supermarket", "address");
+		when(supermarketRepository.findById(BigInteger.valueOf(1)))
 			.thenReturn(Optional.of(supermarket));
-		assertThat(supermarketService.getSupermarketById(1))
+		assertThat(supermarketService.getSupermarketById(BigInteger.valueOf(1)))
 			.isSameAs(supermarket);
 		
-		verify(supermarketRepository).findById(1L);
+		verify(supermarketRepository).findById(BigInteger.valueOf(1));
 		verifyNoMoreInteractions(supermarketRepository);
 	}
 
 	@Test
 	public void test_getSupermarketById_notFound() {
 		
-		when(supermarketRepository.findById(anyLong()))
+		when(supermarketRepository.findById(BigInteger.valueOf(1)))
 			.thenReturn(Optional.empty());
-		assertThat(supermarketService.getSupermarketById(1))
+		assertThat(supermarketService.getSupermarketById(BigInteger.valueOf(1)))
 			.isNull();
 		
-		verify(supermarketRepository).findById(anyLong());
+		verify(supermarketRepository).findById(BigInteger.valueOf(1));
 		verifyNoMoreInteractions(supermarketRepository);
 	}
 	
@@ -112,7 +113,7 @@ public class SupermarketServiceWithMockitoTest {
 	public void test_getSupermarketsByName_withOneSupermarket() {
 		
 		String supermarketName="supermarketName";
-		Supermarket supermarket = new Supermarket(1L, "supermarketName", "address");
+		Supermarket supermarket = new Supermarket(BigInteger.valueOf(1), "supermarketName", "address");
 		
 		when(supermarketRepository.findByName(supermarketName))
 			.thenReturn(asList(supermarket));
@@ -128,8 +129,8 @@ public class SupermarketServiceWithMockitoTest {
 	public void test_getSupermarketsByName_withMoreSupermarkets() {
 		
 		String supermarketName="supermarketName";
-		Supermarket supermarket1 = new Supermarket(1L, "supermarketName", "address1");
-		Supermarket supermarket2 = new Supermarket(2L, "supermarketName", "address2");
+		Supermarket supermarket1 = new Supermarket(BigInteger.valueOf(1), "supermarketName", "address1");
+		Supermarket supermarket2 = new Supermarket(BigInteger.valueOf(2), "supermarketName", "address2");
 		
 		when(supermarketRepository.findByName(supermarketName))
 			.thenReturn(asList(supermarket1, supermarket2));
@@ -144,8 +145,8 @@ public class SupermarketServiceWithMockitoTest {
 	@Test
 	public void test_insertNewSupermarket_setsIdToNull_and_returnsSavedSupermarket() {
 		
-		Supermarket toBeSavedSupermarket = spy(new Supermarket(3L, "toBeSavedSupermarket", "toBeSavedAddress"));
-		Supermarket savedSupermarket = new Supermarket(1L, "savedSupermarket", "savedAddress");
+		Supermarket toBeSavedSupermarket = spy(new Supermarket(BigInteger.valueOf(3), "toBeSavedSupermarket", "toBeSavedAddress"));
+		Supermarket savedSupermarket = new Supermarket(BigInteger.valueOf(1), "savedSupermarket", "savedAddress");
 
 		when(supermarketRepository.save(any(Supermarket.class)))
 			.thenReturn(savedSupermarket);
@@ -166,17 +167,17 @@ public class SupermarketServiceWithMockitoTest {
 	public void test_updateSupermarketById_setsIdToArgument_and_returnsSavedSupermarket() {
 		
 		Supermarket replacementSupermarket = spy(new Supermarket(null, "replacementSupermarket", "replacementAddress"));
-		Supermarket replacedSupermarket = new Supermarket(1L, "replacedSupermarket", "replacedAddress");
+		Supermarket replacedSupermarket = new Supermarket(BigInteger.valueOf(1), "replacedSupermarket", "replacedAddress");
 
 		when(supermarketRepository.save(any(Supermarket.class)))
 			.thenReturn(replacedSupermarket);
 
-		Supermarket result = supermarketService.updateSupermarketById(1L, replacementSupermarket);
+		Supermarket result = supermarketService.updateSupermarketById(BigInteger.valueOf(1), replacementSupermarket);
 
 		assertThat(result).isSameAs(replacedSupermarket);
 
 		InOrder inOrder = inOrder(replacementSupermarket, supermarketRepository);
-		inOrder.verify(replacementSupermarket).setId(1L);
+		inOrder.verify(replacementSupermarket).setId(BigInteger.valueOf(1));
 		inOrder.verify(supermarketRepository).save(replacementSupermarket);
 		
 		verifyNoMoreInteractions(supermarketRepository);
@@ -186,7 +187,7 @@ public class SupermarketServiceWithMockitoTest {
 	@Test
 	public void test_deleteOneSupermarket() {
 		
-		Supermarket supermarketToDelete = new Supermarket(1L, "toBeDeletedSupermarket", "toBeDeletedAddress");
+		Supermarket supermarketToDelete = new Supermarket(BigInteger.valueOf(1), "toBeDeletedSupermarket", "toBeDeletedAddress");
 		supermarketService.delete(supermarketToDelete);
 		
 		verify(supermarketRepository).delete(supermarketToDelete);

@@ -1,39 +1,15 @@
 package com.spring.morganti.giacomo.attsw.app.repositories;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.spring.morganti.giacomo.attsw.app.model.Supermarket;
 
-@Repository
-public class SupermarketRepository {
-
-	private static final String TEMPORARY_IMPLEMENTATION = "Temporary implementation";
-
-	public  List<Supermarket> findAll() {
-		throw new UnsupportedOperationException(TEMPORARY_IMPLEMENTATION);
-	}
-
-	public Optional<Supermarket> findById(long id) {
-		throw new UnsupportedOperationException(TEMPORARY_IMPLEMENTATION);
-		}
-
-	public Supermarket save(Supermarket supermarket) {
-		throw new UnsupportedOperationException(TEMPORARY_IMPLEMENTATION);
-	}
-
-	public void delete(Supermarket supermarketToDelete) {
-		throw new UnsupportedOperationException(TEMPORARY_IMPLEMENTATION);		
-	}
-
-	public void deleteAll() {
-		throw new UnsupportedOperationException(TEMPORARY_IMPLEMENTATION);
-	}
-
-	public List<Supermarket> findByName(String supermarketName) {
-		throw new UnsupportedOperationException(TEMPORARY_IMPLEMENTATION);
-	}
-
+public interface SupermarketRepository extends MongoRepository<Supermarket, BigInteger>{
+	
+	Optional<Supermarket> findById(BigInteger id);
+	List<Supermarket> findByName(String supermarketName);
 }

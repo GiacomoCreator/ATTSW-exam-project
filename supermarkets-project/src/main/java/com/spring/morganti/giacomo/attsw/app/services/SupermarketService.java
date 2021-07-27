@@ -1,5 +1,6 @@
 package com.spring.morganti.giacomo.attsw.app.services;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class SupermarketService {
 		return supermarketRepository.findAll();
 	}
 
-	public Supermarket getSupermarketById(long id) {
+	public Supermarket getSupermarketById(BigInteger id) {
 		return supermarketRepository.findById(id)
 		.orElse(null);
 	}
@@ -31,7 +32,7 @@ public class SupermarketService {
 		return supermarketRepository.save(newSupermarket);
 	}
 
-	public Supermarket updateSupermarketById(long id, Supermarket replacementSupermarket) {
+	public Supermarket updateSupermarketById(BigInteger id, Supermarket replacementSupermarket) {
 		replacementSupermarket.setId(id);
 		return supermarketRepository.save(replacementSupermarket);
 	}

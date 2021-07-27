@@ -1,24 +1,25 @@
 package com.spring.morganti.giacomo.attsw.app.model;
 
+import java.math.BigInteger;
 import java.util.Objects;
 
 public class Supermarket {
 
-		private Long id;
+		private BigInteger id;
 		private String name;
 		private String address;
 		
-		public Supermarket (Long id, String name, String address) {
+		public Supermarket (BigInteger id, String name, String address) {
 			this.id = id;
 			this.name = name;
 			this.address = address;
 		}
 
-		public Long getId() {
+		public BigInteger getId() {
 			return id;
 		}
 
-		public void setId(Long id) {
+		public void setId(BigInteger id) {
 			this.id = id;
 		}
 
@@ -59,5 +60,5 @@ public class Supermarket {
 		public String toString() {
 			return "Supermarket [id=" + id + ", name=" + name + ", address=" + address + "]";
 		}
-	
+
 }
