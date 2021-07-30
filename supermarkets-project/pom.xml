@@ -27,7 +27,8 @@
 	    </sonar.coverage.jacoco.xmlReportPaths>
 	    
 	    <sonar.junit.reportPaths>
-	      ${project.build.directory}/surefire-reports
+	      ${project.build.directory}/surefire-reports,
+	      ${project.build.directory}/failsafe-reports
 	    </sonar.junit.reportPaths>
 	    
 	    <sonar.sources>
@@ -38,8 +39,7 @@
 	    <!-- Exclude non covered files -->
 	    <sonar.coverage.exclusions>
 	      **/*Application.*,
-	      **/model/*,
-	      **/SupermarketRepository.*
+	      **/model/*
 	    </sonar.coverage.exclusions>
 	    
 		<sonar.issue.ignore.multicriteria>e11</sonar.issue.ignore.multicriteria>
@@ -232,6 +232,7 @@
 	        </targetTests>
 	        <excludedTestClasses>
 	          <param>com.spring.morganti.giacomo.attsw.app.SupermarketsProjectApplicationTests</param>
+	          <param>com.feri.alessandro.attsw.project.*IT*</param>
 	        </excludedTestClasses>
 	        <mutators>
 	          <mutator>DEFAULTS</mutator>
