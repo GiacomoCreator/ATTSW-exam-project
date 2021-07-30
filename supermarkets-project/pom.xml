@@ -19,8 +19,43 @@
 		<java.version>1.8</java.version>
 		
 		<skip.unit-tests>false</skip.unit-tests>
-        <skip.integration-tests>false</skip.integration-tests>
-         
+		<skip.integration-tests>false</skip.integration-tests>
+		
+	    <!-- For SonarQube -->
+	    <sonar.coverage.jacoco.xmlReportPaths>
+	      ${project.reporting.outputDirectory}/jacoco/jacoco.xml
+	    </sonar.coverage.jacoco.xmlReportPaths>
+	    
+	    <sonar.junit.reportPaths>
+	      ${project.build.directory}/surefire-reports,
+	      ${project.build.directory}/failsafe-reports
+	    </sonar.junit.reportPaths>
+	    
+	    <sonar.sources>
+	      pom.xml,
+	      ${project.build.sourceDirectory}
+	    </sonar.sources>
+
+	    <!-- Exclude non covered files -->
+	    <sonar.coverage.exclusions>
+	      **/*Application.*,
+	      **/model/*
+	    </sonar.coverage.exclusions>
+	    
+		<sonar.issue.ignore.multicriteria>e11</sonar.issue.ignore.multicriteria>
+		<!-- "Tests should include assertions" on ApplicationTests which just checks 
+			that the Spring application can start -->
+		<sonar.issue.ignore.multicriteria.e11.ruleKey>
+			java:S2699
+		</sonar.issue.ignore.multicriteria.e11.ruleKey>
+		<sonar.issue.ignore.multicriteria.e11.resourceKey>
+			**/*ApplicationTests.java
+		</sonar.issue.ignore.multicriteria.e11.resourceKey>
+		
+	  <sonar.projectKey>GiacomoCreator_ATTSW-exam-project</sonar.projectKey>
+	  <sonar.organization>giacomocreator</sonar.organization>
+	  <sonar.host.url>https://sonarcloud.io</sonar.host.url>		
+		
 	</properties>
 	
 	<dependencies>
@@ -46,6 +81,7 @@
 		<scope>runtime</scope>
 		<optional>true</optional>
 	</dependency>
+	
 	<dependency>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-test</artifactId>
@@ -63,6 +99,11 @@
         </exclusion>
       </exclusions>
     </dependency>
+    
+	<dependency>
+  	  <groupId>org.springframework.boot</groupId>
+	  <artifactId>spring-boot-starter-data-mongodb</artifactId>
+	</dependency>
     
   </dependencies>
 
@@ -103,8 +144,14 @@
             <include>**/*Test.java</include>
           </includes>
         </configuration>
-      </plugin>
-      
+      </plugin>	
+      	
+    </plugins>
+    
+   	<pluginManagement>
+   	
+	  <plugins>
+	  
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
@@ -123,10 +170,214 @@
             </goals>
           </execution>
         </executions>
-       </plugin>	
-      	
-    </plugins>
-    
+       </plugin>
+       
+   	    <plugin>
+	      <groupId>org.jacoco</groupId>
+	      <artifactId>jacoco-maven-plugin</artifactId>
+	      <version>0.8.5</version>
+	      <configuration>
+	        <excludes>
+	          <exclude>**/*Application.*</exclude>
+	          <exclude>**/model/*</exclude>
+	          <exclude>**/SupermarketRepository.*</exclude>
+	        </excludes>
+	      </configuration>
+	      <executions>
+	        <execution>
+	          <goals>
+	            <!-- binds to the phase "initialize" -->
+	            <goal>prepare-agent</goal>
+	            <!-- binds to the phase "verify" --> 
+	            <goal>report</goal>
+	          </goals>
+	        </execution>
+   	        <execution>
+	          <id>jacoco-check</id>
+	          <goals>
+	            <goal>check</goal>
+	          </goals>
+	          <configuration>
+	            <rules>
+	              <rule>
+	                <element>CLASS</element>
+	                <limits>
+	                  <limit>
+	                    <counter>LINE</counter>
+	                    <value>COVEREDRATIO</value>
+	                    <minimum>1.0</minimum>
+	                  </limit>
+	                </limits>
+	              </rule>
+	            </rules>
+	          </configuration>
+	        </execution>
+	      </executions>
+	    </plugin>
+	    
+   	    <plugin>
+	      <groupId>org.pitest</groupId>
+	      <artifactId>pitest-maven</artifactId>
+	      <version>1.5.2</version>
+	      <configuration>
+	        <targetClasses>
+	          <param>com.spring.morganti.giacomo.attsw.app.*</param>
+	        </targetClasses>
+	        <excludedClasses>
+	          <param>com.spring.morganti.giacomo.attsw.app.SupermarketsProjectApplication</param>
+	          <param>com.spring.morganti.giacomo.attsw.app.model.*</param>
+	        </excludedClasses>
+	        <targetTests>
+	          <param>com.spring.morganti.giacomo.attsw.app.*</param>
+	        </targetTests>
+	        <excludedTestClasses>
+	          <param>com.spring.morganti.giacomo.attsw.app.SupermarketsProjectApplicationTests</param>
+	          <param>com.spring.morganti.giacomo.attsw.app.*IT*</param>
+	        </excludedTestClasses>
+	        <mutators>
+	          <mutator>DEFAULTS</mutator>
+	        </mutators>
+	        <mutationThreshold>100</mutationThreshold>
+	      </configuration>
+	    </plugin>
+	    
+        <plugin>
+          <groupId>org.eluder.coveralls</groupId>
+          <artifactId>coveralls-maven-plugin</artifactId>
+          <version>4.3.0</version>
+          <dependencies>
+            <dependency>
+              <groupId>javax.xml.bind</groupId>
+              <artifactId>jaxb-api</artifactId>
+              <version>2.3.1</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        
+    	<plugin>
+	      <groupId>org.sonarsource.scanner.maven</groupId>
+	      <artifactId>sonar-maven-plugin</artifactId>
+	      <version>3.8.0.2131</version>
+	    </plugin> 
+	    
+	     <plugin>
+	      <groupId>io.fabric8</groupId>
+	      <artifactId>docker-maven-plugin</artifactId>  
+          <version>0.30.0</version>
+          <configuration>
+            <images>
+              <image>
+                <name>mongo:4.4.3</name>
+                <run>
+                  <ports>
+                    <port>27017:27017</port>
+                  </ports>
+                </run>
+              </image>
+            </images>
+          </configuration>
+          <executions>
+            <execution>
+              <id>docker:start</id>
+              <phase>pre-integration-test</phase>
+              <goals>
+                <goal>start</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>docker:stop</id>
+              <phase>post-integration-test</phase>
+              <goals>
+                <goal>stop</goal>
+              </goals>
+            </execution>
+          </executions>
+	    </plugin>
+       
+  	  </plugins>  
+  	  
+   	</pluginManagement> 
+  	  
   </build>
+
+  <profiles>
+  
+   <profile>
+      <id>IT</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <skip.unit-tests>true</skip.unit-tests>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-failsafe-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+			<artifactId>docker-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>jacoco</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <configuration>
+                  <propertyName>surefireArgLine</propertyName>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <argLine>${surefireArgLine}</argLine>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    
+    <profile>
+      <id>mutation-testing</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>mutationCoverage</goal>
+                </goals>
+                <phase>verify</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    
+    
+
+  </profiles>
 
 </project>

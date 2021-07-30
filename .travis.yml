@@ -1,0 +1,17 @@
+language: java
+
+# skip installation step
+install: true
+
+services:
+  - docker
+
+script:
+  - cd supermarkets-project 
+  - mvn clean verify -Pjacoco coveralls:report
+  - mvn clean verify -Pmutation-testing
+  - mvn clean verify -PIT
+  
+cache:
+  directories:
+    - $HOME/.m2
