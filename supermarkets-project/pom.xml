@@ -232,7 +232,7 @@
 	        </targetTests>
 	        <excludedTestClasses>
 	          <param>com.spring.morganti.giacomo.attsw.app.SupermarketsProjectApplicationTests</param>
-	          <param>com.feri.alessandro.attsw.project.*IT*</param>
+	          <param>com.spring.morganti.giacomo.attsw.app.*IT*</param>
 	        </excludedTestClasses>
 	        <mutators>
 	          <mutator>DEFAULTS</mutator>
@@ -259,6 +259,40 @@
 	      <artifactId>sonar-maven-plugin</artifactId>
 	      <version>3.8.0.2131</version>
 	    </plugin> 
+	    
+	     <plugin>
+	      <groupId>io.fabric8</groupId>
+	      <artifactId>docker-maven-plugin</artifactId>  
+          <version>0.30.0</version>
+          <configuration>
+            <images>
+              <image>
+                <name>mongo:4.4.3</name>
+                <run>
+                  <ports>
+                    <port>27017:27017</port>
+                  </ports>
+                </run>
+              </image>
+            </images>
+          </configuration>
+          <executions>
+            <execution>
+              <id>docker:start</id>
+              <phase>pre-integration-test</phase>
+              <goals>
+                <goal>start</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>docker:stop</id>
+              <phase>post-integration-test</phase>
+              <goals>
+                <goal>stop</goal>
+              </goals>
+            </execution>
+          </executions>
+	    </plugin>
        
   	  </plugins>  
   	  
@@ -267,6 +301,28 @@
   </build>
 
   <profiles>
+  
+   <profile>
+      <id>IT</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <skip.unit-tests>true</skip.unit-tests>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-failsafe-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+			<artifactId>docker-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
 
     <profile>
       <id>jacoco</id>
@@ -319,6 +375,8 @@
         </plugins>
       </build>
     </profile>
+    
+    
 
   </profiles>
 
