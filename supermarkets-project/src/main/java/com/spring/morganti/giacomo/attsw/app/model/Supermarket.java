@@ -18,6 +18,12 @@ public class Supermarket {
 			this.name = name;
 			this.address = address;
 		}
+			
+
+		public Supermarket() {
+
+		}
+
 
 		public BigInteger getId() {
 			return id;
