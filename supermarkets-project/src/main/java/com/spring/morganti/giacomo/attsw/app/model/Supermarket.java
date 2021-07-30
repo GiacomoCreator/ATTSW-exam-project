@@ -19,11 +19,9 @@ public class Supermarket {
 			this.address = address;
 		}
 			
-
 		public Supermarket() {
 
 		}
-
 
 		public BigInteger getId() {
 			return id;

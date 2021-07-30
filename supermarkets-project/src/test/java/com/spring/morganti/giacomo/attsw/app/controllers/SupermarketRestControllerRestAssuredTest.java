@@ -77,7 +77,7 @@ public class SupermarketRestControllerRestAssuredTest {
 	}
 	
 	@Test
-	public void test_getAllSupermarkets() {
+	public void test_getAllSupermarkets() throws Exception {
 		Supermarket testSupermarket1 = new Supermarket(BigInteger.valueOf(1), "supermarket1", "address1");
 		Supermarket testSupermarket2 = new Supermarket(BigInteger.valueOf(2), "supermarket2", "address2");
 		when(supermarketService.getAllSupermarkets()).thenReturn(asList(testSupermarket1, testSupermarket2));
@@ -101,7 +101,7 @@ public class SupermarketRestControllerRestAssuredTest {
 	}
 	
 	@Test
-	public void test_getSupermarketsByName() {
+	public void test_getSupermarketsByName() throws Exception {
 		
 		String supermarketName="supermarketName";
 		Supermarket testSupermarket1 = new Supermarket(BigInteger.valueOf(1), "supermarketName", "address1");
