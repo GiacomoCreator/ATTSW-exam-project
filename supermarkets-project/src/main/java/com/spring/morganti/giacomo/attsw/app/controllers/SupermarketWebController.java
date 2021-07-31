@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.morganti.giacomo.attsw.app.model.Supermarket;
+import com.spring.morganti.giacomo.attsw.app.model.SupermarketDTO;
 import com.spring.morganti.giacomo.attsw.app.services.SupermarketService;
 
 @Controller
@@ -50,7 +51,11 @@ public class SupermarketWebController {
 	}
 	
 	@PostMapping("/save")
-	public String saveSupermarket(Supermarket supermarket) {
+	public String saveSupermarket(SupermarketDTO supermarketDTO) {
+		
+		Supermarket supermarket = new Supermarket(
+				supermarketDTO.getId(), supermarketDTO.getName(), supermarketDTO.getAddress());
+		
 		final BigInteger id = supermarket.getId();
 		if (id == null) {
 			supermarketService.insertNewSupermarket(supermarket);
