@@ -42,6 +42,10 @@
 	      **/model/*
 	    </sonar.coverage.exclusions>
 	    
+	    <sonar.cpd.exclusions>
+	      **/*model/*
+	    </sonar.cpd.exclusions>	    
+	    
 		<sonar.issue.ignore.multicriteria>e11</sonar.issue.ignore.multicriteria>
 		<!-- "Tests should include assertions" on ApplicationTests which just checks 
 			that the Spring application can start -->
@@ -104,6 +108,18 @@
   	  <groupId>org.springframework.boot</groupId>
 	  <artifactId>spring-boot-starter-data-mongodb</artifactId>
 	</dependency>
+
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>spring-mock-mvc</artifactId>
+      <scope>test</scope>
+      <exclusions>
+	    <exclusion>
+	      <groupId>com.sun.xml.bind</groupId>
+          <artifactId>jaxb-osgi</artifactId>
+	    </exclusion>
+	  </exclusions>
+    </dependency>
     
   </dependencies>
 
