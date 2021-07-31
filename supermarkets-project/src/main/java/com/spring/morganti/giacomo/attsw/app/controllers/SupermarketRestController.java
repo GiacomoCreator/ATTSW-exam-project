@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.morganti.giacomo.attsw.app.model.Supermarket;
+import com.spring.morganti.giacomo.attsw.app.model.SupermarketDTO;
 import com.spring.morganti.giacomo.attsw.app.services.SupermarketService;
 
 @RestController
@@ -40,12 +41,16 @@ public class SupermarketRestController {
 	}
 	
 	@PostMapping("/new")
-	public Supermarket newSupermarket(@RequestBody Supermarket supermarket) {
+	public Supermarket newSupermarket(@RequestBody SupermarketDTO supermarketDTO) {
+		Supermarket supermarket = new Supermarket(
+				supermarketDTO.getId(), supermarketDTO.getName(), supermarketDTO.getAddress());
 		return supermarketService.insertNewSupermarket(supermarket);
 	}
 	
 	@PutMapping("/update/{id}")
-	public Supermarket updateSupermarket(@PathVariable BigInteger  id, @RequestBody Supermarket updatedSupermarket) {
+	public Supermarket updateSupermarket(@PathVariable BigInteger  id, @RequestBody SupermarketDTO updatedSupermarketDTO) {
+		Supermarket updatedSupermarket = new Supermarket(
+				updatedSupermarketDTO.getId(), updatedSupermarketDTO.getName(), updatedSupermarketDTO.getAddress());
 		return supermarketService.updateSupermarketById(id, updatedSupermarket);
 	}
 	
