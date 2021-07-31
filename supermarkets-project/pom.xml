@@ -42,6 +42,10 @@
 	      **/model/*
 	    </sonar.coverage.exclusions>
 	    
+	    <sonar.cpd.exclusions>
+	      **/*model/*
+	    </sonar.cpd.exclusions>	    
+	    
 		<sonar.issue.ignore.multicriteria>e11</sonar.issue.ignore.multicriteria>
 		<!-- "Tests should include assertions" on ApplicationTests which just checks 
 			that the Spring application can start -->
