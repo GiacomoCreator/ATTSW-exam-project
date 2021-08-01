@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Home Page</title>
+</head>
+
+<body>
+
+ <div>
+ 	<a th:href="@{/new}">Add new supermarket</a>
+ </div>
+ 
+  <div>
+    <form name="supermarket_search_form" th:action="@{/search}" method="get">
+      <button  type="submit" name="search_button">Search</button>
+      <input type="text" name="name_to_search" placeholder="Insert name to search..."/>
+    </form>
+  </div>
+ 
+  <div th:if="${supermarkets.empty}">
+     <div>No supermarket is present</div>
+  </div>
+  
+  <div th:unless="${supermarkets.empty}">
+    <table id="supermarkets_table">
+      <caption>Supermarkets</caption>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="supermarket : ${supermarkets}">
+          <td th:text="${supermarket.name}"></td>
+          <td th:text="${supermarket.address}"></td>
+          <td><a th:href="@{'/edit/' + ${supermarket.id}}">Edit</a></td>
+          <td><a th:href="@{'/delete/' + ${supermarket.id}}">Delete</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div>
+  		<a th:href="@{'/drop'}">Reset</a>
+  </div>
+  
+</body>
+</html>
