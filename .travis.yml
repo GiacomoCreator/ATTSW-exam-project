@@ -1,10 +1,13 @@
 language: java
 
+ env: DISPLAY=:99.0
+ 
 # skip installation step
 install: true
 
 services:
   - docker
+  - xvfb
 
 script:
   - cd supermarkets-project 
