@@ -457,7 +457,42 @@
       </build>
     </profile>
     
-    
+    <profile>
+      <id>E2E</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <skip.unit-tests>true</skip.unit-tests>
+        <skip.integration-tests>true</skip.integration-tests>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-failsafe-plugin</artifactId>
+	        <executions>
+              <execution>
+                <id>E2E</id>
+                <configuration>
+                  <includes>
+                    <include>**/*BDD.java</include>
+                  </includes>
+                </configuration>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+	        </executions> 
+          </plugin>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+			<artifactId>docker-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
 
   </profiles>
 
