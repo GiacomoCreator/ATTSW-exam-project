@@ -1,7 +1,5 @@
 language: java
 
- env: DISPLAY=:99.0
- 
 # skip installation step
 install: true
 
