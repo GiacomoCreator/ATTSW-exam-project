@@ -210,7 +210,7 @@ public class SupermarketWebControllerHtmlUnitTest {
 		HtmlPage searchPage = searchForm.getButtonByName("search_button").click();
 		
 		assertThat(searchPage.getBody().getTextContent())
-			.doesNotContain("Error: supermarket with name supermarket not found");
+			.doesNotContain("Error: supermarket with this name not found");
 		HtmlTable table = searchPage.getHtmlElementById("supermarkets_name_table");
 		assertThat(removeWindowsCR(table.asText()))
 			.isEqualTo(

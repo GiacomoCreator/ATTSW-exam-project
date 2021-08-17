@@ -5,12 +5,14 @@ install: true
 
 services:
   - docker
+  - xvfb
 
 script:
   - cd supermarkets-project 
   - mvn clean verify -Pjacoco coveralls:report
   - mvn clean verify -Pmutation-testing
   - mvn clean verify -PIT
+  - mvn clean verify -PE2E
   
 cache:
   directories:

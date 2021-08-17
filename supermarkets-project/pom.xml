@@ -17,6 +17,7 @@
 	<properties>
 	
 		<java.version>1.8</java.version>
+		<cucumber.version>4.4.0</cucumber.version>
 		
 		<skip.unit-tests>false</skip.unit-tests>
 		<skip.integration-tests>false</skip.integration-tests>
@@ -126,6 +127,40 @@
 	  </exclusions>
     </dependency>
     
+   	<dependency>
+	  <groupId>io.cucumber</groupId>
+	  <artifactId>cucumber-java</artifactId>
+	  <version>${cucumber.version}</version>
+	  <scope>test</scope>
+	</dependency>
+    
+	<dependency>
+	  <groupId>io.cucumber</groupId>
+	  <artifactId>cucumber-junit</artifactId>
+	  <version>${cucumber.version}</version>
+	  <scope>test</scope>
+	</dependency>
+	
+	<dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-spring</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+	
+	<dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+	<dependency>
+	  <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+	  <version>3.6.1</version>
+      <scope>test</scope>
+	</dependency>
+    
   </dependencies>
 
   <build>
@@ -142,19 +177,34 @@
         <artifactId>build-helper-maven-plugin</artifactId>
         <executions>
           <execution>
-            <id>add-test-source</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>add-test-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>src/it/java</source>
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+	        <id>add-test-source</id>
+	        <phase>process-resources</phase>
+	        <goals>
+	          <goal>add-test-source</goal>
+	        </goals>
+	        <configuration>
+	          <sources>
+	            <source>src/it/java</source>
+	            <source>src/e2e/java</source>
+	          </sources>
+	        </configuration>
+	      </execution>
+	      <execution>
+	        <id>add-test-resource</id>
+	        <phase>generate-test-resources</phase>
+	        <goals>
+	          <goal>add-test-resource</goal>
+	        </goals>
+	        <configuration>
+	          <resources>
+	            <resource>
+	              <directory>src/e2e/resources</directory>
+	            </resource>
+	          </resources>
+	        </configuration>
+	      </execution>
+	    </executions>
+	  </plugin>
       
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -254,6 +304,7 @@
 	        <excludedTestClasses>
 	          <param>com.spring.morganti.giacomo.attsw.app.SupermarketsProjectApplicationTests</param>
 	          <param>com.spring.morganti.giacomo.attsw.app.*IT*</param>
+	          <param>com.spring.morganti.giacomo.attsw.app.e2e.*</param>
 	        </excludedTestClasses>
 	        <mutators>
 	          <mutator>DEFAULTS</mutator>
@@ -336,6 +387,15 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
 	        <artifactId>maven-failsafe-plugin</artifactId>
+   	        <executions>
+	          <execution>
+	            <configuration>
+	              <excludes>
+	                <exclude>**/*E2E.java</exclude>
+	              </excludes>
+	            </configuration>
+	          </execution>
+	        </executions>
           </plugin>
           <plugin>
             <groupId>io.fabric8</groupId>
@@ -397,7 +457,42 @@
       </build>
     </profile>
     
-    
+    <profile>
+      <id>E2E</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <skip.unit-tests>true</skip.unit-tests>
+        <skip.integration-tests>true</skip.integration-tests>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-failsafe-plugin</artifactId>
+	        <executions>
+              <execution>
+                <id>E2E</id>
+                <configuration>
+                  <includes>
+                    <include>**/*BDD.java</include>
+                  </includes>
+                </configuration>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+	        </executions> 
+          </plugin>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+			<artifactId>docker-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
 
   </profiles>
 
