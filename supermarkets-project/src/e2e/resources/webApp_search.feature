@@ -9,7 +9,6 @@ Feature: Supermarket Web Application
 		And Clicks on the "search_button" button
 		Then The "supermarkets_name_table" table contains a supermarket with name "SupermarketName1" and address "SupermarketAddress1"
 	
-	
 	Scenario: Search a supermarket by name and update it
 		Given The user starts from the home page
 		And The dabatase contains a supermarket with name "SupermarketName1" and address "SupermarketAddress1"
