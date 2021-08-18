@@ -118,6 +118,8 @@ public class SupermarketsWebAppSteps {
 		driver.findElement(By.name("address")).sendKeys(supermarketAddress);	
 		
 		driver.findElement(By.name("save_button")).click();
+		
+	    assertThat(driver.getTitle()).isEqualTo("Home Page");
 	    
 		assertThat(driver.findElement(By.id("supermarkets_table")).getText()).
 			contains(supermarketName, supermarketAddress);

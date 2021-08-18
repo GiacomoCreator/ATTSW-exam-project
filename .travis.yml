@@ -6,6 +6,13 @@ install: true
 services:
   - docker
   - xvfb
+  
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 
 script:
   - cd supermarkets-project 
