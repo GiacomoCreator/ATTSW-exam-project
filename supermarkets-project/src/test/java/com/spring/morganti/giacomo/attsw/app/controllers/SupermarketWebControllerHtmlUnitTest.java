@@ -214,7 +214,7 @@ public class SupermarketWebControllerHtmlUnitTest {
 		HtmlTable table = searchPage.getHtmlElementById("supermarkets_name_table");
 		assertThat(removeWindowsCR(table.asText()))
 			.isEqualTo(
-				"Supermarkets\n" +
+				"Searched Supermarkets\n" +
 				"Name	Address\n" +
 				"existingSupermarket	address1	Edit	Delete\n" +
 				"existingSupermarket	address2	Edit	Delete"
