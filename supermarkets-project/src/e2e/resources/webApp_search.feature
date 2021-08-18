@@ -1,5 +1,5 @@
 Feature: Supermarket Web Application
-2 			 Specifications of Search operations in the Supermarket Web Application
+  			 Specifications of Search operations in the Supermarket Web Application
 
 	Scenario: Search a supermarket by name
 		Given The user starts from the home page
