@@ -21,6 +21,7 @@ public class SupermarketWebController {
 	private static final String MESSAGE_ATTRIBUTE = "message";
 	private static final String SUPERMARKETS_ATTRIBUTE = "supermarkets";
 	private static final String SUPERMARKET_ATTRIBUTE = "supermarket";
+	private static final String REDIRECT_HOME = "redirect:/";
 	
 	@Autowired
 	private SupermarketService supermarketService;
@@ -62,7 +63,7 @@ public class SupermarketWebController {
 		} else {
 			supermarketService.updateSupermarketById(id, supermarket);
 		}
-		return "redirect:/";
+		return REDIRECT_HOME;
 	}
 	
 	@GetMapping("/search")
@@ -81,14 +82,14 @@ public class SupermarketWebController {
 		Supermarket supermarketToDelete = supermarketService.getSupermarketById(id);
 		supermarketService.delete(supermarketToDelete);
 		
-		return "redirect:/";
+		return REDIRECT_HOME;
 	}
 
 	@GetMapping("/drop")
 	public String deleteAll() {
 		supermarketService.deleteAll();
 	
-		return "redirect:/";
+		return REDIRECT_HOME;
 		
 	}
 }

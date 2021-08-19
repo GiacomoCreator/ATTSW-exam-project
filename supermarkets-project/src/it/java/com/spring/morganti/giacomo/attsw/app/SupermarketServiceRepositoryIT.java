@@ -1,6 +1,7 @@
 package com.spring.morganti.giacomo.attsw.app;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class SupermarketServiceRepositoryIT {
 		
 		Supermarket supermarketToRetrieve = supermarketService.getSupermarketById(supermarket.getId());
 		
-		assertThat(supermarketRepository.findById(supermarket.getId()).get()).isEqualTo(supermarketToRetrieve);
+		assertEquals(supermarketRepository.findById(supermarket.getId()).get(), supermarketToRetrieve);
 	}
 	
 	@Test
@@ -80,7 +81,7 @@ public class SupermarketServiceRepositoryIT {
 		
 		Supermarket result = supermarketService.updateSupermarketById(originalSupermarket.getId(), updatedSupermarket);
 		
-		assertThat(supermarketRepository.findById(originalSupermarket.getId()).get()).isEqualTo(result);
+		assertEquals(supermarketRepository.findById(originalSupermarket.getId()).get(), result);
 		
 	}
 	
