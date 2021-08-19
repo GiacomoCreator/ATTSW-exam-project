@@ -12,22 +12,33 @@
 
 <body>
 
- <div>
- 	<a th:href="@{/new}">Add new supermarket</a>
- </div>
- 
-  <div>
+  <div class="top">
     <form name="supermarket_search_form" th:action="@{/search}" method="get">
       <button  type="submit" name="search_button">Search</button>
       <input type="text" name="name_to_search" placeholder="Insert name to search..."/>
     </form>
   </div>
+    
+  <div class="top">
+	 <a th:href="@{/new}" class="new">Add new supermarket</a>
+  </div>
+ 
+ <div class="center">
  
   <div th:if="${supermarkets.empty}">
-     <div>No supermarket is present</div>
+  
+     <div>
+       <h3>Welcome to the Home Page</h3>
+     </div> 
+  
+     <div>
+       <h2>No supermarket is present</h2>
+     </div>
+     
   </div>
   
   <div th:unless="${supermarkets.empty}">
+  
     <table class="table" id="supermarkets_table">
       <caption>Supermarkets</caption>
       <thead>
@@ -40,16 +51,19 @@
         <tr th:each="supermarket : ${supermarkets}">
           <td th:text="${supermarket.name}"></td>
           <td th:text="${supermarket.address}"></td>
-          <td><a th:href="@{'/edit/' + ${supermarket.id}}">Edit</a></td>
-          <td><a th:href="@{'/delete/' + ${supermarket.id}}">Delete</a></td>
+          <td><a th:href="@{'/edit/' + ${supermarket.id}}" class="edit">Edit</a></td>
+          <td><a th:href="@{'/delete/' + ${supermarket.id}}" class="delete">Delete</a></td>
         </tr>
       </tbody>
-    </table>
+    </table>    
+    
+   <div class="bottom">
+  	 <a th:href="@{'/drop'}" class="reset">Reset</a>  
+   </div>
+    
   </div>
   
-  <div>
-  		<a th:href="@{'/drop'}">Reset</a>
-  </div>
-  
+ </div>
+ 
 </body>
 </html>

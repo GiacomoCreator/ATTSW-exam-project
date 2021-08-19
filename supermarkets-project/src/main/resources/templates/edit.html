@@ -12,6 +12,12 @@
 
 <body>
 
+ <div class="right">
+	   <a th:href="@{'/'}" class="new">Home Page</a>
+ </div>
+
+<div class="center">
+
   <h1>Edit Supermarket</h1>
   <div th:unless="${message.empty}">
 	  <span th:text="${message}"></span>
@@ -31,9 +37,7 @@
     </form>
   </div>
   
-  <div>
-  		<a th:href="@{'/'}">Home Page</a>
-  </div>
+</div> 
   
 </body>
 </html>

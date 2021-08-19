@@ -12,8 +12,12 @@
 
 <body>
 
- <h1>Search Supermarket</h1>
- 
+  <div class="top">
+  		<a th:href="@{'/'}" class="new">Home Page</a>
+  </div>
+
+ <div class="center"> 
+
   <div th:if="${supermarkets.empty}">
      <span th:text="${message}"></span>
   </div>
@@ -31,16 +35,14 @@
         <tr th:each="supermarket : ${supermarkets}">
           <td th:text="${supermarket.name}"></td>
           <td th:text="${supermarket.address}"></td>
-          <td><a th:href="@{'/edit/' + ${supermarket.id}}">Edit</a></td>
-          <td><a th:href="@{'/delete/' + ${supermarket.id}}">Delete</a></td>
+          <td><a th:href="@{'/edit/' + ${supermarket.id}}" class="edit">Edit</a></td>
+          <td><a th:href="@{'/delete/' + ${supermarket.id}}" class="delete">Delete</a></td>
         </tr>
       </tbody>
     </table>
   </div>
   
-   <div>
-  		<a th:href="@{'/'}">Home Page</a>
-  </div>
+ </div>
   
 </body>
 </html>

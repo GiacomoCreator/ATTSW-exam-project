@@ -5,13 +5,12 @@ body {
 	background-size: cover;
 	background-repeat: no-repeat;
     background-attachment: fixed;
-	background-position: center;
-	
+	background-position: center;	
 }
 
 .table {
 	text-align: center;
-	width: 50%;
+	width: 40%;
     margin-top: 60px;
 	margin-left: auto;
   	margin-right: auto;
@@ -19,7 +18,7 @@ body {
 
 .table2 {
 	text-align: center;
-	width: 50%;
+	width: 40%;
     margin-top: 50px;
 	margin-left: auto;
   	margin-right: auto;
@@ -53,14 +52,118 @@ td {
  
 caption {
   color: white;
-  font: bold 80px Georgia;
+  font: bold 60px Georgia;
   margin-bottom: 10px;
   text-shadow: 2px 2px 5px blue;
 }
 
 .table2 caption {
   color: white;
-  font: bold 70px Georgia;
+  font: bold 50px Georgia;
   margin-bottom: 10px;
   text-shadow: 2px 2px 5px #ff0080;
 }
+
+h1 {
+  color: white;
+  font: bold 70px Georgia;
+  margin-top: 150px;
+  text-shadow: 2px 2px 5px green;
+}
+
+h2 {
+  color: red;
+  background-color: white;
+  background-size: cover;
+  border: 1px solid red;
+  font: 30px Georgia;
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+h3 {
+  color: white;
+  font: bold 70px Georgia;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 5px purple;
+}
+
+a.edit:link, a.edit:visited {
+  font-family: "Impact";
+  background-color: white;
+  color: green;
+  border: 3px solid green;
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-left: 13px;
+}
+
+ a.edit:hover, a.edit:active {
+  background-color: green;
+  color: white;
+  margin-left: 13px;
+}
+
+a.delete:link, a.delete:visited {
+  font-family: "Impact";
+  background-color: white;
+  color: red;
+  border: 3px solid red;
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-left: 13px;
+}
+
+ a.delete:hover, a.delete:active {
+  background-color: red;
+  color: white;
+  margin-left: 13px;
+}
+
+a.reset:link, a.reset:visited {
+  font-family: "Segoe Print";
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a.reset:hover, a.reset:active {
+  background-color: red;
+}
+
+a.new:link, a.new:visited {
+  font-family: "Segoe Print";
+  background-color: white;
+  color: green;
+  border: 3px solid green;
+  padding: 5px 10px;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+ a.new:hover, a.new:active {
+  background-color: green;
+  color: white;
+  margin-left: 8px;
+}
+
+.bottom {
+      text-align: center;
+	  margin-top: 10px;
+}
+
+.top {
+      text-align: left;
+	  margin-top: 20px;
+}
+
+.center {
+	text-align: center;
+	vertical-align: text-middle;
+}
+
+
