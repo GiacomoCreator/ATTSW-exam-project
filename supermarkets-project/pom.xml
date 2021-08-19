@@ -34,7 +34,8 @@
 	    
 	    <sonar.sources>
 	      pom.xml,
-	      ${project.build.sourceDirectory}
+	      ${project.build.sourceDirectory},
+	      ${basedir}/src/main/resources/templates
 	    </sonar.sources>
 
 	    <!-- Exclude non covered files -->

@@ -1,5 +1,5 @@
 Feature: Supermarket Web Application
-2 			 Specifications of Editing operations in the Supermarket Web Application
+  			 Specifications of Editing operations in the Supermarket Web Application
 
 	Scenario: Add a new supermarket
 		Given The user starts from the home page

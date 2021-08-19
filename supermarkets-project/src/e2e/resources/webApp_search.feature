@@ -1,5 +1,5 @@
 Feature: Supermarket Web Application
-2 			 Specifications of Search operations in the Supermarket Web Application
+  			 Specifications of Search operations in the Supermarket Web Application
 
 	Scenario: Search a supermarket by name
 		Given The user starts from the home page
@@ -8,7 +8,6 @@ Feature: Supermarket Web Application
 		When The user enters "SupermarketName1" in the search bar 
 		And Clicks on the "search_button" button
 		Then The "supermarkets_name_table" table contains a supermarket with name "SupermarketName1" and address "SupermarketAddress1"
-	
 	
 	Scenario: Search a supermarket by name and update it
 		Given The user starts from the home page
