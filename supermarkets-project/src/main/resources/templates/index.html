@@ -14,13 +14,13 @@
 
   <div class="top">
     <form name="supermarket_search_form" th:action="@{/search}" method="get">
-      <button  type="submit" name="search_button">Search</button>
-      <input type="text" name="name_to_search" placeholder="Insert name to search..."/>
+      <input type="text" name="name_to_search" placeholder="Insert name to search..." required/>
+      <button  class= "button" type="submit" name="search_button">Search</button>
     </form>
   </div>
     
   <div class="top">
-	 <a th:href="@{/new}" class="new">Add new supermarket</a>
+	   <a th:href="@{/new}" class="new">Add new supermarket</a>
   </div>
  
  <div class="center">
@@ -28,11 +28,11 @@
   <div th:if="${supermarkets.empty}">
   
      <div>
-       <h3>Welcome to the Home Page</h3>
+         <h3>Welcome to the Home Page</h3>
      </div> 
   
      <div>
-       <h2>No supermarket is present</h2>
+         <h2>No supermarket is present</h2>
      </div>
      
   </div>
@@ -58,9 +58,8 @@
     </table>    
     
    <div class="bottom">
-  	 <a th:href="@{'/drop'}" class="reset">Reset</a>  
-   </div>
-    
+  	   <a th:href="@{'/drop'}" class="reset">Reset</a>  
+   </div>   
   </div>
   
  </div>

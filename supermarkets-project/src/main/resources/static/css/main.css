@@ -52,7 +52,7 @@ td {
  
 caption {
   color: white;
-  font: bold 60px Georgia;
+  font: bold 50px Georgia;
   margin-bottom: 10px;
   text-shadow: 2px 2px 5px blue;
 }
@@ -76,7 +76,7 @@ h2 {
   background-color: white;
   background-size: cover;
   border: 1px solid red;
-  font: 30px Georgia;
+  font: 30px Times New Roman;
   display: inline-block;
   padding: 10px 20px;
 }
@@ -98,7 +98,7 @@ a.edit:link, a.edit:visited {
   margin-left: 13px;
 }
 
- a.edit:hover, a.edit:active {
+a.edit:hover, a.edit:active {
   background-color: green;
   color: white;
   margin-left: 13px;
@@ -114,7 +114,7 @@ a.delete:link, a.delete:visited {
   margin-left: 13px;
 }
 
- a.delete:hover, a.delete:active {
+a.delete:hover, a.delete:active {
   background-color: red;
   color: white;
   margin-left: 13px;
@@ -139,17 +139,53 @@ a.new:link, a.new:visited {
   background-color: white;
   color: green;
   border: 3px solid green;
-  padding: 5px 10px;
+  padding: 5px 13px;
   text-decoration: none;
   display: inline-block;
   margin-left: 8px;
 }
 
- a.new:hover, a.new:active {
+a.new:hover, a.new:active {
   background-color: green;
   color: white;
   margin-left: 8px;
 }
+
+input[type=text] {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 8px;
+
+}
+
+.label{
+  font-family: "Segoe Print";
+  background-color: green;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.form{
+	display: inline-block;
+}
+
+.button {
+    font-family: "Segoe Print";
+	font-size: 15px;
+	margin-left: 8px;
+	border: 1px solid grey;
+		padding: p3 15px;		
+}
+
+.button:hover {
+	background-color: gray;
+	color: white;
+}
+
 
 .bottom {
       text-align: center;
@@ -165,5 +201,3 @@ a.new:link, a.new:visited {
 	text-align: center;
 	vertical-align: text-middle;
 }
-
-
