@@ -19,43 +19,8 @@
 		<java.version>1.8</java.version>
 		
 		<skip.unit-tests>false</skip.unit-tests>
-		<skip.integration-tests>false</skip.integration-tests>
-		
-	    <!-- For SonarQube -->
-	    <sonar.coverage.jacoco.xmlReportPaths>
-	      ${project.reporting.outputDirectory}/jacoco/jacoco.xml
-	    </sonar.coverage.jacoco.xmlReportPaths>
-	    
-	    <sonar.junit.reportPaths>
-	      ${project.build.directory}/surefire-reports
-	    </sonar.junit.reportPaths>
-	    
-	    <sonar.sources>
-	      pom.xml,
-	      ${project.build.sourceDirectory}
-	    </sonar.sources>
-
-	    <!-- Exclude non covered files -->
-	    <sonar.coverage.exclusions>
-	      **/*Application.*,
-	      **/model/*,
-	      **/SupermarketRepository.*
-	    </sonar.coverage.exclusions>
-	    
-		<sonar.issue.ignore.multicriteria>e11</sonar.issue.ignore.multicriteria>
-		<!-- "Tests should include assertions" on ApplicationTests which just checks 
-			that the Spring application can start -->
-		<sonar.issue.ignore.multicriteria.e11.ruleKey>
-			java:S2699
-		</sonar.issue.ignore.multicriteria.e11.ruleKey>
-		<sonar.issue.ignore.multicriteria.e11.resourceKey>
-			**/*ApplicationTests.java
-		</sonar.issue.ignore.multicriteria.e11.resourceKey>
-		
-	  <sonar.projectKey>GiacomoCreator_ATTSW-exam-project</sonar.projectKey>
-	  <sonar.organization>giacomocreator</sonar.organization>
-	  <sonar.host.url>https://sonarcloud.io</sonar.host.url>		
-		
+        <skip.integration-tests>false</skip.integration-tests>
+         
 	</properties>
 	
 	<dependencies>
@@ -143,10 +108,10 @@
       	
     </plugins>
     
-   	<pluginManagement>
-   	
-	  <plugins>
-	  
+   <pluginManagement>
+      
+    <plugins>
+      
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
@@ -167,7 +132,7 @@
         </executions>
        </plugin>
        
-   	    <plugin>
+       <plugin>
 	      <groupId>org.jacoco</groupId>
 	      <artifactId>jacoco-maven-plugin</artifactId>
 	      <version>0.8.5</version>
@@ -221,6 +186,7 @@
 	        <excludedClasses>
 	          <param>com.spring.morganti.giacomo.attsw.app.SupermarketsProjectApplication</param>
 	          <param>com.spring.morganti.giacomo.attsw.app.model.*</param>
+	          <param>com.spring.morganti.giacomo.attsw.app.repositories.*</param>
 	        </excludedClasses>
 	        <targetTests>
 	          <param>com.spring.morganti.giacomo.attsw.app.*</param>
@@ -246,21 +212,15 @@
               <version>2.3.1</version>
             </dependency>
           </dependencies>
-        </plugin>
-        
-    	<plugin>
-	      <groupId>org.sonarsource.scanner.maven</groupId>
-	      <artifactId>sonar-maven-plugin</artifactId>
-	      <version>3.8.0.2131</version>
-	    </plugin> 
+        </plugin>	
+      	
+    </plugins>
+    
+   </pluginManagement>
        
-  	  </plugins>  
-  	  
-   	</pluginManagement> 
-  	  
   </build>
-
-  <profiles>
+  
+   <profiles>
 
     <profile>
       <id>jacoco</id>
@@ -314,6 +274,6 @@
       </build>
     </profile>
 
-  </profiles>
+   </profiles>
 
 </project>
