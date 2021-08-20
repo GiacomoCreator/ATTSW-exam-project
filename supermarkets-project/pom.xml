@@ -144,7 +144,7 @@
 	        <excludes>
 	          <exclude>**/*Application.*</exclude>
 	          <exclude>**/model/*</exclude>
-	          <exclude>**/SupermarketRepository.*</exclude>
+	          <exclude>**/SupermarketService.*</exclude>
 	        </excludes>
 	      </configuration>
 	      <executions>
@@ -190,6 +190,7 @@
 	        <excludedClasses>
 	          <param>com.spring.morganti.giacomo.attsw.app.SupermarketsProjectApplication</param>
 	          <param>com.spring.morganti.giacomo.attsw.app.model.*</param>
+	          <param>com.spring.morganti.giacomo.attsw.app.services.*</param>
 	        </excludedClasses>
 	        <targetTests>
 	          <param>com.spring.morganti.giacomo.attsw.app.*</param>
