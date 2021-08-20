@@ -48,6 +48,8 @@ td {
   border: 1px solid black;
   background-color: white;
   font-family: "Lucida Console";
+  max-width:100%;
+  white-space:nowrap;
 }
  
 caption {
@@ -95,13 +97,12 @@ a.edit:link, a.edit:visited {
   border: 3px solid green;
   padding: 5px 10px;
   text-decoration: none;
-  margin-left: 13px;
+  margin-left: 3px;
 }
 
 a.edit:hover, a.edit:active {
   background-color: green;
   color: white;
-  margin-left: 13px;
 }
 
 a.delete:link, a.delete:visited {
@@ -111,13 +112,12 @@ a.delete:link, a.delete:visited {
   border: 3px solid red;
   padding: 5px 10px;
   text-decoration: none;
-  margin-left: 13px;
+  margin-left: 3px;
 }
 
 a.delete:hover, a.delete:active {
   background-color: red;
   color: white;
-  margin-left: 13px;
 }
 
 a.reset:link, a.reset:visited {
@@ -178,7 +178,7 @@ input[type=text] {
 	font-size: 15px;
 	margin-left: 8px;
 	border: 1px solid grey;
-		padding: p3 15px;		
+	padding: p3 15px;		
 }
 
 .button:hover {
