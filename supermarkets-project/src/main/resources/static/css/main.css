@@ -24,6 +24,20 @@ body {
   	margin-right: auto;
 }
 
+.table2 th {
+  border: 1px solid black;
+  background-color: #ff0080;
+  color: white;
+  font-family: "Segoe Print";
+}
+
+.table2 caption {
+  color: white;
+  font: bold 50px Georgia;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 5px #ff0080;
+}
+
 th, td {
   padding: 15px;
   text-align: left;
@@ -33,13 +47,6 @@ th, td {
 th {
   border: 1px solid black;
   background-color: #0000ff;
-  color: white;
-  font-family: "Segoe Print";
-}
-
-.table2 th {
-  border: 1px solid black;
-  background-color: #ff0080;
   color: white;
   font-family: "Segoe Print";
 }
@@ -57,13 +64,6 @@ caption {
   font: bold 50px Georgia;
   margin-bottom: 10px;
   text-shadow: 2px 2px 5px blue;
-}
-
-.table2 caption {
-  color: white;
-  font: bold 50px Georgia;
-  margin-bottom: 10px;
-  text-shadow: 2px 2px 5px #ff0080;
 }
 
 h1 {
