@@ -47,7 +47,7 @@ public class SupermarketWebControllerHtmlUnitTest {
 		HtmlPage page = this.webClient.getPage("/");
 
 		assertThat(page.getBody()
-			.getTextContent()).contains("No supermarket");
+			.getTextContent()).contains("No supermarket is present");
 	}
 
 	@Test
@@ -61,7 +61,7 @@ public class SupermarketWebControllerHtmlUnitTest {
 		HtmlPage page = this.webClient.getPage("/");
 
 		assertThat(page.getBody().getTextContent())
-			.doesNotContain("No supermarket");
+			.doesNotContain("No supermarket is present");
 		
 		HtmlTable table = page.getHtmlElementById("supermarkets_table");
 		
