@@ -40,21 +40,21 @@ body {
 
 th, td {
   padding: 15px;
-  text-align: left;
-  
 }
 
 th {
   border: 1px solid black;
   background-color: #0000ff;
   color: white;
-  font-family: "Segoe Print";
+  font: 17px Segoe Print;
+  text-align: left;
 }
 
 td {
   border: 1px solid black;
   background-color: white;
-  font-family: "Lucida Console";
+  font: 15px Lucida Console;
+  text-align: center;
   max-width:100%;
   white-space:nowrap;
 }
@@ -97,7 +97,6 @@ a.edit:link, a.edit:visited {
   border: 3px solid green;
   padding: 5px 10px;
   text-decoration: none;
-  text-align: center;
 }
 
 a.edit:hover, a.edit:active {
@@ -112,7 +111,6 @@ a.delete:link, a.delete:visited {
   border: 3px solid red;
   padding: 5px 10px;
   text-decoration: none;
-  text-align: center;
 }
 
 a.delete:hover, a.delete:active {
