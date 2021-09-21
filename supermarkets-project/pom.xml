@@ -253,6 +253,11 @@
 	          <exclude>**/*Application.*</exclude>
 	          <exclude>**/model/*</exclude>
 	          <exclude>**/SupermarketRepository.*</exclude>
+              <!-- The following is just to avoid the instrumentation error
+                (when running SupermarketWebControllerHtmlUnitTest) due to the
+                HtmlUnit class StyleAttributes$Definition
+                (method too large) -->
+              <exclude>**/css/*</exclude>
 	        </excludes>
 	      </configuration>
 	      <executions>
