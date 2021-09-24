@@ -17,7 +17,8 @@
 	<properties>
 	
 		<java.version>1.8</java.version>
-		<cucumber.version>4.4.0</cucumber.version>
+		<cucumber.version>5.7.0</cucumber.version>
+		<groovy.version>3.0.4</groovy.version>
 		
 		<skip.unit-tests>false</skip.unit-tests>
 		<skip.integration-tests>false</skip.integration-tests>
